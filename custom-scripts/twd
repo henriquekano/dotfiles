@@ -1,0 +1,11 @@
+#/bin/bash
+
+complete_file_name=$1
+
+filename_regex="[^\/]+$"
+
+filename=$(echo $complete_file_name | grep -oP "[^\/]+$")
+parents_directories=$(echo $complete_file_name | grep -oP ".*(?=\/${filename}$)")
+
+mkdir -p $parents_directories
+touch $complete_file_name
